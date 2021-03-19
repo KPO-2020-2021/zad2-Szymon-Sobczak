@@ -6,6 +6,7 @@ TESTS=./tests
 TBIN=./tests/bin
 FLAGS= -Wall -pedantic -std=c++14 -iquote inc
 
+
 __start__: ${TRGDIR}/test_arytm_zesp
 	${TRGDIR}/test_arytm_zesp  latwy
 
