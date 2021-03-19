@@ -6,11 +6,15 @@
 
 using namespace std;
 
-struct Wynik{
+/*
+ * Modeluje pojecie statystyki testu.
+ */
+
+struct Wynik{ 
     double zdobyte_punkty;
     double ilosc_pytan;
 };
 
-void wyswietl_wynik(Wynik elem);
+void wyswietl_wynik(Wynik elem); 
 
 #endif

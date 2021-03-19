@@ -12,7 +12,6 @@ using namespace std;
  *  strukturze.
  */
 
-
 /*!
  * Modeluje pojecie liczby zespolonej
  */
@@ -23,8 +22,6 @@ struct  LZespolona {
 };
 
 
-void Wyswietl(LZespolona skl);
-
 LZespolona Sprzezenie(LZespolona skl);
 
 double ModulZ(LZespolona);
@@ -34,7 +31,6 @@ double ModulZ(LZespolona);
  */
 
 istream & operator >> ( istream & StrmWe, LZespolona & Ln);
-
 ostream & operator << ( ostream & StrmWy, LZespolona Lz);
 
 bool operator == (LZespolona  Skl1,  LZespolona  Skl2);

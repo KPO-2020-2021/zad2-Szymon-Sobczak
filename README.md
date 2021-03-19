@@ -1,5 +1,9 @@
 # Projekt 2 - Arytmetyka liczb zespolonych
 
+## Uruchamianie Programu
+Program uruchamia sie samoczynnie w tyrbie "latwy" po uzyciu Makefile poleceniem "make".
+Alternatywnie program uruchomic mozna uzywajac ./test_arytm_zesp latwy/trudny.
+
 ## Cel ćwiczenia
 Wykształcenie umiejętności definiowania przeciążeń operatorów arytmetycznych dwuargumentowych i jednoargumentowych dla własnych struktur danych oraz operatora porównania. Przećwiczenie podstawowych operacji na strumieniach plikowych.  Nabycie umiejętności definiowania przeciążeń operacji na strumieniach.
 

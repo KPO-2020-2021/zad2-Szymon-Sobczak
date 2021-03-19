@@ -20,16 +20,12 @@ struct WyrazenieZesp {
  * Funkcje ponizej nalezy zdefiniowac w module.
  */
 
-void Wyswietl(WyrazenieZesp  WyrZ); /* Funckja wyswietlajaca wyrazenie zespolone   */
+LZespolona Oblicz(WyrazenieZesp  WyrZ); 
 
-LZespolona Oblicz(WyrazenieZesp  WyrZ); /* Funckja obliczajaca wyrazenie zespolone */
+ostream & operator << (ostream & StrmWy, Operator & WypSym); 
+istream & operator >> (istream & StrmWe, Operator & WczytSym); 
 
-ostream & operator << (ostream & StrmWy, Operator WypSym); 
-
-istream & operator >> (istream & StrmWe, Operator & WczytSym); /* Przeciązenie operatorow, dpo wczyania operatora arytmetycznego w wyrazaniu zespolonym*/
-
-ostream & operator << ( ostream & StrmWy, WyrazenieZesp WyrZ); /* Przeciązenie operatorow, do wyswietlania wyrazaenia zespolonego */
-
-//istream & operator >> ( istream & StrmWe, WyrazenieZesp & WyrZ);
+ostream & operator << ( ostream & StrmWy, WyrazenieZesp  WyrZ); 
+istream & operator >> ( istream & StrmWe, WyrazenieZesp & WyrZ);
 
 #endif
