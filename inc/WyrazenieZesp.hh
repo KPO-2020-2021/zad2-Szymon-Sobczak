@@ -2,6 +2,8 @@
 #define WYRAZENIEZESP_HH
 #include "LZespolona.hh"
 #include <cstring>
+#include <fstream>
+
 /*
  * Modeluje zbior operatorow arytmetycznych.
  */
@@ -14,18 +16,21 @@ struct WyrazenieZesp {
   LZespolona   Arg1;   // Pierwszy argument wyrazenia arytmetycznego
   Operator     Op;     // Opertor wyrazenia arytmetycznego
   LZespolona   Arg2;   // Drugi argument wyrazenia arytmetycznego
+  
+  LZespolona Oblicz() const; 
 };
 
 /*
  * Funkcje ponizej nalezy zdefiniowac w module.
  */
 
-LZespolona Oblicz(WyrazenieZesp  WyrZ); 
 
 ostream & operator << (ostream & StrmWy, Operator & WypSym); 
 istream & operator >> (istream & StrmWe, Operator & WczytSym); 
 
 ostream & operator << ( ostream & StrmWy, WyrazenieZesp  WyrZ); 
 istream & operator >> ( istream & StrmWe, WyrazenieZesp & WyrZ);
+
+ifstream & operator >> (ifstream & StrmWe, WyrazenieZesp & WyrZ);
 
 #endif

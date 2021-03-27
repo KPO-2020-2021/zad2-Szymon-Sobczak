@@ -13,7 +13,7 @@ static WyrazenieZesp  TestLatwy[] =
   { {{2,1}, Op_Dodaj, {1,2}},
     {{1,0}, Op_Odejmij, {0,1}},
     {{3,0}, Op_Mnoz, {0,3}},
-    {{4,8}, Op_Dziel, {1,0}},
+    {{4,8}, Op_Dziel, {3,8}}, //1;0
   };
 
 /*
@@ -44,11 +44,11 @@ static WyrazenieZesp  TestTrudny[] =
  *        w tablicy dostepnej poprzez wskTabTestu.
  */
 
-void UstawTest( BazaTestu *wskBazaTestu, WyrazenieZesp *wskTabTestu, unsigned int IloscPytan )
+void BazaTestu::UstawTest(WyrazenieZesp *wskTabTestu, unsigned int IloscPytan)
 {
-  wskBazaTestu->wskTabTestu = wskTabTestu;
-  wskBazaTestu->IloscPytan = IloscPytan;
-  wskBazaTestu->IndeksPytania = 0;
+  this->wskTabTestu = wskTabTestu;
+  this->IloscPytan = IloscPytan;
+  this->IndeksPytania = 0;
 }
 
 /*
@@ -71,15 +71,15 @@ void UstawTest( BazaTestu *wskBazaTestu, WyrazenieZesp *wskTabTestu, unsigned in
  *       false - w przypadku przeciwnym.
  */
 
-bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char *sNazwaTestu )
+bool BazaTestu::InicjalizujTest(const char * sNazwaTestu)
 {
   if (!strcmp(sNazwaTestu,"latwy")) {
-    UstawTest(wskBazaTestu,TestLatwy,sizeof(TestLatwy)/sizeof(WyrazenieZesp));
+    UstawTest(TestLatwy,sizeof(TestLatwy)/sizeof(WyrazenieZesp));
     return true;
   }
 
   if (!strcmp(sNazwaTestu,"trudny")) {
-    UstawTest(wskBazaTestu,TestTrudny,sizeof(TestTrudny)/sizeof(WyrazenieZesp));
+    UstawTest(TestTrudny,sizeof(TestTrudny)/sizeof(WyrazenieZesp));
     return true;
   }
 
@@ -107,10 +107,11 @@ bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char *sNazwaTestu )
  *       false - w przypadku przeciwnym.
  */
 
-bool PobierzNastpnePytanie( BazaTestu  *wskBazaTestu, WyrazenieZesp *wskWyrazenie )
+
+bool BazaTestu::PobierzNastpnePytanie( WyrazenieZesp *wskWyr)
 {
-  if (wskBazaTestu->IndeksPytania >= wskBazaTestu->IloscPytan) return false;
-  *wskWyrazenie = wskBazaTestu->wskTabTestu[wskBazaTestu->IndeksPytania];
-  ++wskBazaTestu->IndeksPytania;
+  if (this->IndeksPytania >= this->IloscPytan) return false;
+  *wskWyr = this->wskTabTestu[this->IndeksPytania];
+  ++this->IndeksPytania;
   return true;
 }

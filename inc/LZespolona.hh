@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cmath>
 
+#define MIN_DIFF 0.01
+
 using namespace std;
 
 /*!
@@ -19,26 +21,23 @@ using namespace std;
 struct  LZespolona {
   double   re;    /*! Pole repezentuje czesc rzeczywista. */
   double   im;    /*! Pole repezentuje czesc urojona. */
+  
+  bool operator == (LZespolona  Skl2) const;
+  double ModulZ();
+  LZespolona Sprzezenie() ;
+
+  LZespolona  operator + (LZespolona  Skl2) const;
+  LZespolona  operator - (LZespolona  Skl2) const;
+  LZespolona  operator * (LZespolona  Skl2) const;
+  LZespolona  operator / (double skalar) const;
+  LZespolona  operator / (LZespolona  Skl2) const;
+  
+  //istream & operator << (istream & StrmWe);
 };
 
-
-LZespolona Sprzezenie(LZespolona skl);
-
-double ModulZ(LZespolona);
-
-/*
- * Dalej powinny pojawic sie zapowiedzi definicji przeciazen operatorow
- */
+/* Dalej powinny pojawic sie zapowiedzi definicji przeciazen operatorow */
 
 istream & operator >> ( istream & StrmWe, LZespolona & Ln);
 ostream & operator << ( ostream & StrmWy, LZespolona Lz);
-
-bool operator == (LZespolona  Skl1,  LZespolona  Skl2);
-LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2);
-LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2); 
-LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2);
-LZespolona  operator / (LZespolona  Skl,  double skalar);
-LZespolona  operator / (LZespolona  Skl1,  LZespolona  Skl2);
-
 
 #endif

@@ -1,0 +1,56 @@
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "./doctest/doctest.h"
+#include "LZespolona.hh"
+#include "WyrazenieZesp.hh"
+
+TEST_CASE("LZespolona - wyswietlanie standard") {
+    LZespolona x;
+   
+    x.re = 2;
+    x.im = 2;
+    
+    std::ostringstream out;
+    
+    out << x;
+    std::cout << out.str() << std::endl;
+    CHECK( "(2.00+2.00i)" == out.str() );
+}
+
+TEST_CASE("LZespolona - wyswietlanie zaokraglane") {
+    LZespolona x;
+   
+    x.re = 2.0/3.0;
+    x.im = 2.0/3.0;
+    
+    std::ostringstream out;
+    
+    out << x;
+    std::cout << out.str() << std::endl;
+    CHECK( "(0.67+0.67i)" == out.str() );
+}
+
+TEST_CASE("WyrZespolone - wyswietlanie standard") {
+    WyrazenieZesp x;
+   
+    x.Arg1.re = 5; x.Arg1.im = 7;
+    x.Arg2.re = 1; x.Arg2.im = 3;
+    x.Op = Op_Dodaj;
+    std::ostringstream out;
+    out << x;
+    std::cout << out.str() << std::endl;
+    CHECK( "(5.00+7.00i) + (1.00+3.00i)" == out.str());
+}
+
+TEST_CASE("WyrZespolone - wyswietlanie zaokraglane") {
+    WyrazenieZesp x;
+   
+    x.Arg1.re = -5.126; x.Arg1.im = 7.985;
+    x.Arg2.re = 7.351; x.Arg2.im = -3.852;
+    x.Op = Op_Mnoz;
+    std::ostringstream out;
+    out << x;
+    std::cout << out.str() << std::endl;
+    CHECK( "(-5.13+7.99i) * (7.35-3.85i)" == out.str());
+}
+
+

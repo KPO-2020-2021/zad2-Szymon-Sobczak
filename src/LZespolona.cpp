@@ -5,9 +5,9 @@
 * POST: Sprzezona wartosc liczby zespolonej.
 */
 
-LZespolona Sprzezenie(LZespolona skl){
-  skl.im*=-1;
-  return skl;
+LZespolona LZespolona::Sprzezenie() {
+  this->im*=-1;
+  return *this;
 }
 
 /*
@@ -16,8 +16,8 @@ LZespolona Sprzezenie(LZespolona skl){
 * POST: Sprzezona wartosc liczby zespolonej.
 */
 
-double ModulZ(LZespolona skl){
-  return sqrt(pow(skl.re,2)+pow(skl.im,2));
+double LZespolona::ModulZ(){
+  return sqrt(pow(this->re,2)+pow(this->im,2));
 }
 
 /*
@@ -67,7 +67,8 @@ istream & operator >> (istream & StrmWe, LZespolona & Ln){
 */
 
 ostream & operator << (ostream & StrmWy, LZespolona Lz){
-  return StrmWy << '(' << Lz.re << showpos << Lz.im << noshowpos << 'i' << ')';
+  StrmWy.precision(2);
+  return StrmWy << '(' << fixed  << Lz.re << showpos << Lz.im << noshowpos << 'i' << ')';
 }
 
 /*
@@ -76,8 +77,8 @@ ostream & operator << (ostream & StrmWy, LZespolona Lz){
 * POST: True - gdy liczby sa sobie rowne, false - gdy liczby sa rozne.
 */
 
-bool operator == (LZespolona  Skl1,  LZespolona  Skl2){
-  if((Skl1.re == Skl2.re) && (Skl1.im == Skl2.im))
+bool LZespolona::operator == (LZespolona  Skl2) const{
+  if((this->re >= Skl2.re - MIN_DIFF) && (this->re <= Skl2.re + MIN_DIFF) && (this->im >= Skl2.im - MIN_DIFF) && (this->im <= Skl2.im + MIN_DIFF))
     return true;
   else 
     return false;
@@ -89,12 +90,13 @@ bool operator == (LZespolona  Skl1,  LZespolona  Skl2){
 * POST: Suma 2 liczb zespolonych.
 */
 
-LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2){
-  LZespolona  Wynik;
-  Wynik.re = Skl1.re + Skl2.re;
-  Wynik.im = Skl1.im + Skl2.im;
-  return Wynik;
+LZespolona  LZespolona::operator + (LZespolona  Skl2) const
+{
+  Skl2.re += this->re;
+  Skl2.im += this->im;
+  return Skl2;
 }
+
 
 /*
 * OPIS: Przeciazenie operatora -.
@@ -102,10 +104,11 @@ LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2){
 * POST: Roznica 2 liczb zespolonych.
 */
 
-LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2){
+LZespolona  LZespolona::operator - (LZespolona  Skl2) const
+{
   LZespolona  Wynik;
-  Wynik.re = Skl1.re - Skl2.re;
-  Wynik.im = Skl1.im - Skl2.im;
+  Wynik.re= this->re - Skl2.re;
+  Wynik.im= this->im - Skl2.im;
   return Wynik;
 }
 
@@ -114,11 +117,11 @@ LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2){
 * PRE: Prawidlowo wprowadzone dwie liczby zespolonej do pomnzenia, czynniki.
 * POST: Iloczyn 2 liczb zespolonych.
 */
-
-LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2){
+LZespolona  LZespolona::operator * (LZespolona  Skl2) const
+{
   LZespolona  Wynik;
-  Wynik.re = Skl1.re*Skl2.re - Skl1.im*Skl2.im;
-  Wynik.im = Skl1.re*Skl2.im + Skl1.im*Skl2.re;
+  Wynik.re = this->re*Skl2.re - this->im*Skl2.im;
+  Wynik.im = this->re*Skl2.im + this->im*Skl2.re;
   return Wynik;
 }
 
@@ -127,15 +130,14 @@ LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2){
 * PRE: Prawidlowo wprowadzona liczba zespolona- dzielna oraz skalar- dzielnik.
 * POST: Iloraz liczby zespolonej i skalara.
 */
-
-LZespolona  operator / (LZespolona  Skl,  double skalar){
+LZespolona  LZespolona::operator / (double skalar) const
+{ 
   LZespolona  Wynik;
-  if (skalar==0){ /* Obsluga przypadku granicznego, gdy libcza zepolona zostanie podzielona przez 0 */
-   cerr << "Wykonano dzielenie przez 0, operacja niezdefiniowana. Konczenie pracy programu."<< endl; 
-   exit(1);
+  if (skalar==0){ /* Obsluga przypadku granicznego, gdy liczba zepolona zostanie podzielona przez 0 */
+   throw runtime_error("Wykonano dzielenie przez 0, operacja niezdefiniowana. Konczenie pracy programu.\n");
   }
-  Wynik.re= Skl.re/skalar; /* Dzielenie czesci rzeczywistej i urojonej przez skalar */
-  Wynik.im= Skl.im/skalar;
+  Wynik.re= this->re/skalar; /* Dzielenie czesci rzeczywistej i urojonej przez skalar */
+  Wynik.im= this->im/skalar;
   return Wynik;
 }
 
@@ -144,16 +146,13 @@ LZespolona  operator / (LZespolona  Skl,  double skalar){
 * PRE: Prawidlowo wprowadzone dwie liczby zespolonej do podzelenia, dzielna i dzielnik.
 * POST: Iloraz liczb zespolonych.
 */
-
-LZespolona  operator / (LZespolona  Skl1,  LZespolona  Skl2){
+LZespolona  LZespolona::operator / (LZespolona  Skl2) const
+{
   LZespolona  Wynik;
-  if (ModulZ(Skl2)==0){ /* Obsluga przypadku granicznego, gdy libcza zepolona zostanie podzielona przez 0+0i */
-   cerr << "Wykonano dzielenie przez 0+0i, operacja niezdefiniowana. Konczenie pracy programu." << endl; 
-   exit(1);
+  if (Skl2.ModulZ()==0){ /* Obsluga przypadku granicznego, gdy libcza zepolona zostanie podzielona przez 0+0i */
+    throw runtime_error("Wykonano dzielenie przez 0+0i, operacja niezdefiniowana. Konczenie pracy programu.\n");
   }
-  Wynik= (Skl1*Sprzezenie(Skl2))/pow(ModulZ(Skl2),2); /* Wykonanie dzielenia dwoch liczb zespolonych */
+  Wynik= (*this*Skl2.Sprzezenie())/pow(Skl2.ModulZ(),2); /* Wykonanie dzielenia dwoch liczb zespolonych */
   return Wynik;
 }
-
-
 
