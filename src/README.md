@@ -1,2 +1,2 @@
 ## Pliki źródłowe
-W tym folderze znajdują się pliki źródłowe.
+Katalog zawiera pliki źródłowe programu.

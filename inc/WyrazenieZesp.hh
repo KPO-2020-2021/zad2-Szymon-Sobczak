@@ -20,9 +20,6 @@ struct WyrazenieZesp {
   LZespolona Oblicz() const; 
 };
 
-/*
- * Funkcje ponizej nalezy zdefiniowac w module.
- */
 
 
 ostream & operator << (ostream & StrmWy, Operator & WypSym); 
@@ -32,5 +29,5 @@ ostream & operator << ( ostream & StrmWy, WyrazenieZesp  WyrZ);
 istream & operator >> ( istream & StrmWe, WyrazenieZesp & WyrZ);
 
 ifstream & operator >> (ifstream & StrmWe, WyrazenieZesp & WyrZ);
-
+ifstream & operator >> (ifstream & StrmWe, Operator & WczytSym);
 #endif

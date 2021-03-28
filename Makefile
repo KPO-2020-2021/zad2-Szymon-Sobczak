@@ -73,7 +73,6 @@ ${TBIN}:
 	mkdir ${TBIN}
 
 test: ${TBIN}/test1_porownanie ${TBIN}/test2_dodawanie ${TBIN}/test3_odejmowanie ${TBIN}/test4_iloczyn ${TBIN}/test5_iloraz ${TBIN}/test6_wyswietlanie ${TBIN}/test7_wczytywanie ${TBIN}/test8_sprzezenie ${TBIN}/test9_modul ${TBIN}/test10_WyrZsp ${TBIN}/test11_statystyka
-#test:  ${TBIN}/test11_statystyka
 	${TBIN}/test1_porownanie
 	${TBIN}/test2_dodawanie
 	${TBIN}/test3_odejmowanie

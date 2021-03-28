@@ -6,18 +6,18 @@
 * POST: Wyswietlenie statystyki.
 */
 
-void Wynik::ustaw_statystyke(BazaTestu BazaT){
-    this->ilosc_pytan= BazaT.IloscPytan;
+void Wynik::ustaw_statystyke(unsigned int dlugosc){
+    this->ilosc_pytan= dlugosc;
     this->zdobyte_punkty=0;
     this->stracone_punkty=0;
 }
     
 void Wynik::dodaj_punkt(){
-    this->zdobyte_punkty+=1;
+    this->zdobyte_punkty++;
 }
 
 void Wynik::dodaj_niepoprawna_odp(){
-    this->stracone_punkty+=1;
+    this->stracone_punkty++;
 }
 
 double Wynik::oblicz_proc_poprawne(){

@@ -1,8 +1,8 @@
 #include "LZespolona.hh"
 /*
-* OPIS: Funckja wykonujaca operacje sprzezania liczby zespolonej.
+* OPIS: Metoda wykonujaca operacje sprzezania liczby zespolonej.
 * PRE: Liczba zespolona, ktora zostanie poddana sprzezeniu.
-* POST: Sprzezona wartosc liczby zespolonej.
+* POST: Sprzezona liczba zespolona.
 */
 
 LZespolona LZespolona::Sprzezenie() {
@@ -11,9 +11,9 @@ LZespolona LZespolona::Sprzezenie() {
 }
 
 /*
-* OPIS: Funckja wykonujaca operacje sprzezania liczby zespolonej.
-* PRE: Liczba zespolona, ktora zostanie poddana sprzezeniu.
-* POST: Sprzezona wartosc liczby zespolonej.
+* OPIS: Metoda wykonujaca wyznaczanie modulu z liczby zespolonej.
+* PRE: Liczba zespolona, z ktorej zostanie wyznaczony modul.
+* POST: Modul z liczby zespolonej.
 */
 
 double LZespolona::ModulZ(){
@@ -59,6 +59,46 @@ istream & operator >> (istream & StrmWe, LZespolona & Ln){
   }
   return StrmWe;
 }
+
+
+
+ifstream & operator >> (ifstream & StrmWe, LZespolona & Ln){
+  char Nawias, Litera; 
+  StrmWe >> Nawias;
+  if(StrmWe.fail()){
+    return StrmWe;
+  }
+  if (Nawias != '('){
+    StrmWe.setstate(ios::failbit);
+    return StrmWe;
+  }
+  StrmWe >> Ln.re;
+  if(StrmWe.fail()){
+    return StrmWe;
+  }
+  StrmWe >> Ln.im;
+  if(StrmWe.fail()){
+    return StrmWe;
+  }
+  StrmWe >> Litera;
+  if(StrmWe.fail()){
+      return StrmWe;
+  }
+  if (Litera != 'i'){
+    StrmWe.setstate(ios::failbit);
+    return StrmWe;
+  }
+  StrmWe >> Nawias;
+  if (Nawias != ')'){
+    StrmWe.setstate(ios::failbit);
+    return StrmWe;
+  }
+  return StrmWe;
+}
+
+
+
+
 
 /*
 * OPIS: Przeciazenie operatora <<, pozwalajace na wyswietlenie liczby zespolonej.

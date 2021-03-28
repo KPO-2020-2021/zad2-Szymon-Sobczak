@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <fstream>
 
 #define MIN_DIFF 0.01
 
@@ -14,9 +15,7 @@ using namespace std;
  *  strukturze.
  */
 
-/*!
- * Modeluje pojecie liczby zespolonej
- */
+/* Modeluje pojecie liczby zespolonej  */
 
 struct  LZespolona {
   double   re;    /*! Pole repezentuje czesc rzeczywista. */
@@ -35,9 +34,10 @@ struct  LZespolona {
   //istream & operator << (istream & StrmWe);
 };
 
-/* Dalej powinny pojawic sie zapowiedzi definicji przeciazen operatorow */
-
 istream & operator >> ( istream & StrmWe, LZespolona & Ln);
 ostream & operator << ( ostream & StrmWy, LZespolona Lz);
+
+/////////
+istream & operator >> (istream & StrmWe, LZespolona & Ln);
 
 #endif

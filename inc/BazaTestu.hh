@@ -14,7 +14,7 @@ struct BazaTestu {
   WyrazenieZesp  *wskTabTestu;   /* Wskaznik na tablice zawierajaca pytania testu */
   unsigned int    IloscPytan;    /* Ilosc wszystkich pytan */
   unsigned int    IndeksPytania; /* Numer pytania, ktore ma byc pobrane jako nastepne */
-
+  string nazwa_zestawu;
   void UstawTest(WyrazenieZesp *wskTabTestu, unsigned int IloscPytan);
 
   /* Inicjalizuje test powiazany z dana nazwa.*/
@@ -22,6 +22,10 @@ struct BazaTestu {
 
   /* Udostepnia nastepne pytanie z bazy. */
   bool PobierzNastpnePytanie( WyrazenieZesp *wskWyr);
+
+  BazaTestu  Translacja_pliku_na_tab(string nazwa_pliku);
 };
+
+
 
 #endif

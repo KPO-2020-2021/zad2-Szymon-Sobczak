@@ -3,10 +3,10 @@ Testy programu uruchamiaja się po wpisaniu w terminal make test. Zaleca się wy
 
 ## Przebieg Testów Programu
 Wykonywane jest 11 serii testowych, sprawdających program w zakresie:
-- Wczytywania i wypisywania Liczby zespolonej oraz wyrazenia zespolonego. 
+- Wczytywania i wypisywania liczby zespolonej oraz wyrazenia zespolonego. 
 - Wykonywania obliczen arytmetycznych na liczbach zespolonych i wyrazeniach zespolonych.
 - Sprawdzenie dzialania metod wyznaczajacych modul oraz sprzezenie liczby zespolonej.
-- Sprawdzeie dzialania oddzielnego modulu statystyki, inicjalizacji, aktualizowania wynikow, prezentacji wynikow. 
+- Sprawdzeie dzialania oddzielnego modulu statystyki, inicjalizacji, aktualizowania i prezentacji wynikow. 
 
 ## Uwagi 
-- Wszystkie oblcizane wartosci sa zaokraglane z tolerancja bledu MIN_DIFF wynosi 0.01.
+- Wszystkie obliczane wartosci sa zaokraglane z tolerancja bledu MIN_DIFF wynoszaca 0.01.

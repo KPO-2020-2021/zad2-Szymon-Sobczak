@@ -47,7 +47,7 @@ TEST_CASE("Statystyka, sprawdzenie wyswietlania i obliczania  procentu wlasciwyc
     y.IloscPytan = 5;
     double z;
 
-    x.ustaw_statystyke(y);
+    x.ustaw_statystyke(y.IloscPytan);
     x.dodaj_punkt();
     x.dodaj_punkt();
     x.dodaj_niepoprawna_odp();

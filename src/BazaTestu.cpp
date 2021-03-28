@@ -83,6 +83,12 @@ bool BazaTestu::InicjalizujTest(const char * sNazwaTestu)
     return true;
   }
 
+  if (!strcmp(sNazwaTestu,"wlasny")) {
+    Translacja_pliku_na_tab(nazwa_zestawu);
+    UstawTest(wskTabTestu,IloscPytan);
+    return true;
+  }
+
   cerr << "Otwarcie testu '" << sNazwaTestu << "' nie powiodlo sie." << endl;
   return false;
 }
@@ -108,10 +114,64 @@ bool BazaTestu::InicjalizujTest(const char * sNazwaTestu)
  */
 
 
-bool BazaTestu::PobierzNastpnePytanie( WyrazenieZesp *wskWyr)
+bool BazaTestu::PobierzNastpnePytanie(WyrazenieZesp *wskWyr)
 {
   if (this->IndeksPytania >= this->IloscPytan) return false;
   *wskWyr = this->wskTabTestu[this->IndeksPytania];
   ++this->IndeksPytania;
   return true;
+}
+
+
+BazaTestu  BazaTestu::Translacja_pliku_na_tab(string nazwa_pliku)
+{
+    ifstream PlikWe;
+    BazaTestu TestzPliku;
+    WyrazenieZesp * TestWlasny = NULL,* Temp = NULL;
+    unsigned int dlugosc=0;
+    PlikWe.open(nazwa_pliku);
+    if(!PlikWe.is_open()){
+      throw runtime_error("Inicjalizacja testu nie powiodla sie! Plik uszkodzony, badz nie istenieje\n");
+    }
+    cout << "WCZYTANO PLIK "<<endl;
+    WyrazenieZesp pobrane_wyr;
+    while(1)
+    {
+        char znak;
+        PlikWe >> znak;
+        if (znak=='.' || PlikWe.eof())
+            break;
+        PlikWe.putback(znak);
+        PlikWe >> pobrane_wyr; 
+        if(PlikWe.fail()){ 
+            PlikWe.clear(); 
+            PlikWe.ignore(10000,'\n'); 
+            continue;
+        }
+        if (dlugosc == 0 ){
+            TestWlasny = new WyrazenieZesp[1];
+            TestWlasny[dlugosc] = pobrane_wyr;
+            dlugosc++;
+        }
+        else{
+            Temp = new WyrazenieZesp[dlugosc];
+            for(unsigned int i=0; i<dlugosc;i++){
+                Temp[i] = TestWlasny[i];
+            }
+            delete [] TestWlasny;
+            TestWlasny = new WyrazenieZesp[dlugosc+1];
+            for(unsigned int i=0; i<dlugosc;i++){
+                TestWlasny[i] = Temp[i];
+            }
+            delete [] Temp;
+            TestWlasny[dlugosc] = pobrane_wyr;
+            dlugosc++;
+        }
+    }
+  PlikWe.close();
+  
+  this->wskTabTestu=TestWlasny;
+  this->IloscPytan=dlugosc;
+  this->IndeksPytania=0;
+  return TestzPliku;
 }
