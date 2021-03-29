@@ -32,7 +32,7 @@ struct  LZespolona {
   LZespolona  operator / (LZespolona  Skl2) const;
 };
 
-void arg(LZespolona z);
+double arg(LZespolona z);
 
 LZespolona  operator += (LZespolona  & Skl1,LZespolona const & Arg2);
 LZespolona  operator /= (LZespolona  & Skl1,LZespolona const & Arg2);

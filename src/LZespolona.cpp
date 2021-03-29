@@ -225,14 +225,14 @@ LZespolona  LZespolona::operator / (LZespolona  Skl2) const{
 }
 
 /*
-* Funkcja wypisujaca na standardowe wyjscie wyznaczony Arg. glowny liczby zespolonej.
+* Funkcja wyznaczajaca Arg. glowny liczby zespolonej.
 * Argumenty:
-*   z - liczba zespolona z ktorej ma zostac wyznaczony i wypisany Arg. glowny.
+*   z - liczba zespolona z ktorej ma zostac wyznaczony i  wypisany Arg. glowny.
 * Zwraca:
-*   brak;
+*   Argument glowny liczby zespolonej 
 */
 
-void arg(LZespolona z)
+double arg(LZespolona z)
 {
   double kat;
   if (z.re==0){
@@ -240,8 +240,8 @@ void arg(LZespolona z)
       kat = 0.5 * M_PI;
     if(z.im < 0)
       kat = -0.5 * M_PI;
-    if(z.im == 0)
-      throw runtime_error("Kat jest niezdefiniowany");
+    if(z.im == 0) /* Dla Re = 0 i Im = 0 Arg. jest niezdefiniowany */ 
+      throw runtime_error("Arg. jest niezdefiniowany");
   }
   else{
     if(z.re > 0)
@@ -249,8 +249,7 @@ void arg(LZespolona z)
     if(z.re < 0)
       kat = atan2(z.im, z.re) + M_PI;
   }
-  cout.precision(2);
-  cout << fixed << kat;
+  return kat;
 }
 
 /*

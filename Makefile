@@ -89,4 +89,4 @@ run:
 	${TRGDIR}/test_arytm_zesp latwy
 
 clean:
-	rm -f ${TRGDIR}/test_arytm_zesp ${OBJ}/* ${TBIN}/*
+	rm -f ${TRGDIR}/test_arytm_zesp ${OBJ}/* ${TBIN}/* 
