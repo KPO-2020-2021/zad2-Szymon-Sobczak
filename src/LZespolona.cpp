@@ -146,7 +146,7 @@ bool LZespolona::operator == (LZespolona  Skl2) const{
 * Argumenty:
 *   Skl2 - drugi skladnik do zsumowania.
 * Zwraca:
-*   Suma dwoch liczb zespolonych.
+*   Suma dwoch liczb zespolonych bedaca liczba zespolona. 
 */
 
 LZespolona  LZespolona::operator + (LZespolona  Skl2) const{
@@ -160,7 +160,7 @@ LZespolona  LZespolona::operator + (LZespolona  Skl2) const{
 * Argumenty:
 *   Skl2 - odjemnik.
 * Zwraca:
-*   Roznica dwoch liczb zespolonych.
+*   Roznica dwoch liczb zespolonych bedaca liczba zespolona.
 */
 
 LZespolona  LZespolona::operator - (LZespolona  Skl2) const{
@@ -175,7 +175,7 @@ LZespolona  LZespolona::operator - (LZespolona  Skl2) const{
 * Argumenty:
 *   Skl2 - drugi czynnik do pomnozenia.
 * Zwraca:
-*   Iloczyn dwoch liczb zespolonych.
+*   Iloczyn dwoch liczb zespolonych bedacy liczba zespolona.
 */
 
 LZespolona  LZespolona::operator * (LZespolona  Skl2) const{
@@ -192,7 +192,7 @@ LZespolona  LZespolona::operator * (LZespolona  Skl2) const{
 * Warunki wstepne:
 *   - skalar nie moze byc 0.
 * Zwraca:
-*   Iloraz liczby zespolonej i skalara.
+*   Iloraz liczby zespolonej i skalara bedacy liczba zespolona.
 */
 
 LZespolona  LZespolona::operator / (double skalar) const{ 
@@ -229,7 +229,7 @@ LZespolona  LZespolona::operator / (LZespolona  Skl2) const{
 * Argumenty:
 *   z - liczba zespolona z ktorej ma zostac wyznaczony i  wypisany Arg. glowny.
 * Zwraca:
-*   Argument glowny liczby zespolonej 
+*   Argument glowny liczby zespolonej bedacy typu double
 */
 
 double arg(LZespolona z)
