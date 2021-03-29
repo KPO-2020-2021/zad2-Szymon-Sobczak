@@ -5,37 +5,35 @@
 
 using namespace std;
 
-int tryb;
-
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv){
   WyrazenieZesp   WyrZ_PytanieTestowe; /* Deklaracja zmiennych potrzebnych do przeprowadzenia testu */ 
   LZespolona LZsp_pyt, LZsp_test;
   Wynik podsumowaine;
   BazaTestu   BazaT = {nullptr, 0, 0}; 
-/* Pobranie argumentu wywolania programu, w celu okreslenia poziomu trudnosci testu */
-try{
-  if ((argc < 2 && strcmp(argv[1],"wlasny")) || ((argc > 3)&& !strcmp(argv[1],"wlasny"))) { 
-    throw runtime_error("Brak opcji okreslajacej rodzaj testu.\nDopuszczalne nazwy to:  latwy, trudny, wlasny\n");
-  }
 
-  if(!strcmp(argv[1],"wlasny")){
-    BazaT.nazwa_zestawu = argv[2];
-  }
-
-    if (BazaT.InicjalizujTest(argv[1]) == false) { /* Inicjalizacja testu ze wzgledu na wybrany napis "latwy", "trudny" wraz z warunkiem, gdy napis nie zostanie podany*/
-    throw runtime_error("Inicjalizacja testu nie powiodla sie.\n");
-  }
-  
-  podsumowaine.ustaw_statystyke(BazaT.IloscPytan);
- 
+  try{  
+    /* Sprawdzenie poprawnosci argumetow wywolania programu */
+    if ((argc < 2) || ((argc > 3) && !strcmp(argv[1],"wlasny"))) { 
+      throw runtime_error("Brak opcji okreslajacej rodzaj testu.\nDopuszczalne nazwy to:  latwy, trudny, wlasny\n");
+    }
+    /* W wypadku wczytywania zestawu pytan z pliku, wczytanie nazwy pliku z ktorego beda czytane pytania */
+    if(!strcmp(argv[1],"wlasny")){ 
+      if(argv[2]==NULL)
+        throw runtime_error("Brak nazwy pliku zawierajacego test\n");
+      BazaT.nazwa_zestawu = argv[2];
+    }
+    /* Pobranie argumentu wywolania programu, w celu okreslenia poziomu trudnosci testu */
+    if (BazaT.InicjalizujTest(argv[1]) == false) { /* Inicjalizacja testu ze wzgledu na wybrany napis "latwy", "trudny", "wlasny" */
+      throw runtime_error("Inicjalizacja testu nie powiodla sie.\n"); /* Jesli inicjalziacja testu nie uda sie, zglos blad */
+    }
+    podsumowaine.ustaw_statystyke(BazaT.IloscPytan); /* Inicjalizacja statystyki testu */
     while (BazaT.PobierzNastpnePytanie(&WyrZ_PytanieTestowe)) { /* Petla wczytujaca kolejne pytania z bazy testu */ 
       LZsp_test=WyrZ_PytanieTestowe.Oblicz(); /* Wyznaczenie i wyliczenie oczekiwanego wyniku, ktory ma podac egzaminowany */
       cout << ":? Podaj wynik operacji:  " << WyrZ_PytanieTestowe << " =" << endl << "   Twoja odpowiedz: "; /* Wyswietlenie pytania */
       cin >> LZsp_pyt;  /* Wprowadzenie odpowiedzi egzaminowanego- Liczby zespolonej bedacej wynikiem */
       if(cin.fail()){ /* W wypadku podania blednego formatu liczby, uzytkownik posiada jeszcze dwie szanse na wpisanie poprawnego wyniku dzialania */
-          cin.clear(); 
-          cin.ignore(10000,'\n'); 
+          cin.clear(); /* Opuszczenie flag informujacych o wystapieniu bledu na strumieniu */
+          cin.ignore(10000,'\n'); /* Pominiecie blednych znakow */
           cerr << ":! Blad foramtu liczby zespolonej"<< endl;
           cout << ":? Wpisz wynik jeszcze raz, masz jeszcze dwie szanse: ";
           cin >> LZsp_pyt; /* Ponowna proba wpisania L. zesp. */
@@ -48,57 +46,30 @@ try{
             if(cin.fail()){
               cin.clear(); 
               cin.ignore(10000,'\n'); 
-              cout<<":( Blad. Prawidlowym wynikiem jest: "<< LZsp_test << endl << endl;
-              podsumowaine.dodaj_niepoprawna_odp();
-              continue;
+              cout<<":( Blad. Prawidlowym wynikiem jest: "<< LZsp_test << endl << endl; /* Wyswietlanie informacji o prawidlowym wyniku */
+              podsumowaine.dodaj_niepoprawna_odp(); /* Odnotowanie wystpaienia niepoprawnej odpwoiedzi */
+              continue; /* Przejdz do kolejnego pytania */
             }
           }   
         }
-        if (LZsp_test == LZsp_pyt) { /* Warunek zaliczajacy poprawny wynik zapisany w poprawny sposob */
+        if (LZsp_test == LZsp_pyt) { /* Warunek zaliczajacy poprawny wynik, zapisany w poprawny sposob */
           cout<<":) Odpowiedz poprawna"<<endl;
-          podsumowaine.dodaj_punkt();
+          podsumowaine.dodaj_punkt(); /* Odnotowanie wystpaienia poprawnej odpowiedzi */
           cin.clear();
         }
         else{ /* W przypadku blednej odpowiedzi jest ona wyswietlana na ekran */
           cout<<":( Blad. Prawidlowym wynikiem jest: "<< LZsp_test <<endl;
           podsumowaine.dodaj_niepoprawna_odp();
           cin.clear();
-      }
+        }
       cin.clear(); 
       cout << endl;
     }
   }
-  catch (runtime_error & e) 
-  {
+  catch (runtime_error & e){ /* Reakcja w wyniku wystapienia bledu */
     cerr << "Wystapil blad!" << endl << e.what();
     exit(1);
   }
-
-  cout << "Koniec testu" << endl << endl << podsumowaine;
-
+  cout << "Koniec testu" << endl << endl << podsumowaine; /* Wyswietlenie statystyki przeprowadzonego testu */
   return 0;
 }
-
-
-/*
- cout << endl<< "Testy obliczen arytmetycznych i wyswietlajacych:" << endl << endl;
-  
-    LZespolona zesp1={3,2},zesp2{2,9},zesp3{0.53,0.2275},zesp4{0.000224,46}; 
-    
-    cout <<"L. zespolona 1: " << zesp1 << endl;
-    cout <<"L. zespolona 2: " << zesp2 << endl;
-    
-    cout << "Bwah bwah:" << zesp3/zesp4 <<endl;
-
-    cout << "Test dodawania, wartosc zakladana to (5+11i): "<< zesp1+zesp2 << endl;
-    cout << "Test odejmowania, wartosc zakladana to (1-7i): "<< zesp1-zesp2  << endl;
-    cout << "Test mnozenia, wartosc zakladana to (-12+31i): " << zesp1*zesp2  << endl;
-    cout << "Test dzielenia przez liczbe zesp, wartosc zakladana to (0.282353-0.270588i): "<< zesp1/zesp2 << endl;
-    cout << "Test dzielenia liczby zespolonej 1 przez skalar (2), wartosc zakladana to (1.5+1i): "<< zesp1/2 << endl;
-    cout << "Test sprzerzenia z liczby zespolonej 1. wartosc zakladana to (3-2i): " << zesp1.Sprzezenie() << endl;
-    cout << "Test wyznacznaia modulu z liczby zespolonej 1. wartosc zakladana to: 3.60555, Wynik: " << zesp1.ModulZ() << endl;
-
-    cout << endl;
-    cout << "Start testu arytmetyki zespolonej: " << argv[1] << endl;
-    cout << endl;
-    */

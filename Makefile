@@ -6,10 +6,6 @@ TESTS=./tests
 TBIN=./tests/bin
 FLAGS= -Wall -pedantic -std=c++14 -iquote inc
 
-
-__start__: ${TRGDIR}/test_arytm_zesp
-	${TRGDIR}/test_arytm_zesp  latwy
-
 ${TRGDIR}/test_arytm_zesp: ${OBJ} ${OBJ}/main.o ${OBJ}/LZespolona.o\
                      ${OBJ}/WyrazenieZesp.o ${OBJ}/BazaTestu.o ${OBJ}/BazaTestu.o ${OBJ}/Statystyka.o
 	g++ -o ${TRGDIR}/test_arytm_zesp ${OBJ}/main.o ${OBJ}/LZespolona.o\
@@ -66,13 +62,15 @@ ${TBIN}/test9_modul: ${TBIN} ${OBJ}/LZespolona.o
 ${TBIN}/test10_WyrZsp: ${TBIN} ${OBJ}/LZespolona.o ${OBJ}/WyrazenieZesp.o
 	g++ -o ${TESTS}/bin/test10_WyrZsp ${FLAGS} -I${TESTS}/doctest ${TESTS}/test10_WyrZsp.cpp ${OBJ}/LZespolona.o ${OBJ}/WyrazenieZesp.o
 
-${TBIN}/test11_statystyka: ${TBIN} ${OBJ}/LZespolona.o ${OBJ}/Statystyka.o ${OBJ}/BazaTestu.o
-	g++ -o ${TESTS}/bin/test11_statystyka ${FLAGS} -I${TESTS}/doctest ${TESTS}/test11_statystyka.cpp ${OBJ}/Statystyka.o ${OBJ}/BazaTestu.o
+${TBIN}/test11_statystyka: ${TBIN} ${OBJ}/LZespolona.o ${OBJ}/Statystyka.o ${OBJ}/BazaTestu.o ${OBJ}/LZespolona.o ${OBJ}/WyrazenieZesp.o
+	g++ -o ${TESTS}/bin/test11_statystyka ${FLAGS} -I${TESTS}/doctest ${TESTS}/test11_statystyka.cpp ${OBJ}/Statystyka.o ${OBJ}/BazaTestu.o ${OBJ}/LZespolona.o ${OBJ}/WyrazenieZesp.o
+
 
 ${TBIN}:
 	mkdir ${TBIN}
 
 test: ${TBIN}/test1_porownanie ${TBIN}/test2_dodawanie ${TBIN}/test3_odejmowanie ${TBIN}/test4_iloczyn ${TBIN}/test5_iloraz ${TBIN}/test6_wyswietlanie ${TBIN}/test7_wczytywanie ${TBIN}/test8_sprzezenie ${TBIN}/test9_modul ${TBIN}/test10_WyrZsp ${TBIN}/test11_statystyka
+#test: ${TBIN}/test11_statystyka
 	${TBIN}/test1_porownanie
 	${TBIN}/test2_dodawanie
 	${TBIN}/test3_odejmowanie

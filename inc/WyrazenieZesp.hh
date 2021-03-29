@@ -4,14 +4,10 @@
 #include <cstring>
 #include <fstream>
 
-/*
- * Modeluje zbior operatorow arytmetycznych.
- */
+/* Modeluje zbior operatorow arytmetycznych */
 enum Operator { Op_Dodaj, Op_Odejmij, Op_Mnoz, Op_Dziel};
 
-/*
- * Modeluje pojecie dwuargumentowego wyrazenia zespolonego
- */
+/* Modeluje pojecie dwuargumentowego wyrazenia zespolonego */
 struct WyrazenieZesp {
   LZespolona   Arg1;   // Pierwszy argument wyrazenia arytmetycznego
   Operator     Op;     // Opertor wyrazenia arytmetycznego
@@ -19,8 +15,6 @@ struct WyrazenieZesp {
   
   LZespolona Oblicz() const; 
 };
-
-
 
 ostream & operator << (ostream & StrmWy, Operator & WypSym); 
 istream & operator >> (istream & StrmWe, Operator & WczytSym); 
@@ -30,4 +24,5 @@ istream & operator >> ( istream & StrmWe, WyrazenieZesp & WyrZ);
 
 ifstream & operator >> (ifstream & StrmWe, WyrazenieZesp & WyrZ);
 ifstream & operator >> (ifstream & StrmWe, Operator & WczytSym);
+
 #endif

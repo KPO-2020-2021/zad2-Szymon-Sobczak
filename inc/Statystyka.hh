@@ -7,12 +7,9 @@
 
 using namespace std;
 
-/*
- * Modeluje pojecie statystyki testu.
- */
-
+/* Modeluje pojecie statystyki testu. */
 struct Wynik{ 
-    double zdobyte_punkty,stracone_punkty, ilosc_pytan;
+    double zdobyte_punkty,stracone_punkty,ilosc_pytan;
 
     void ustaw_statystyke(unsigned int dlugosc);
     void dodaj_punkt();

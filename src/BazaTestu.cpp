@@ -9,6 +9,7 @@ using namespace std;
  * Tablica, ktora jest widoczna tylko w tym module.
  * Zawiera ona tresc latwego testu.
  */
+
 static WyrazenieZesp  TestLatwy[] =
   { {{2,1}, Op_Dodaj, {1,2}},
     {{1,0}, Op_Odejmij, {0,1}},
@@ -17,7 +18,7 @@ static WyrazenieZesp  TestLatwy[] =
   };
 
 /*
- * Tablica zawierajaca tesc trudnego testu
+ * Tablica zawierajaca tresc trudnego testu.
  */
 static WyrazenieZesp  TestTrudny[] =
   { {{7.5,5}, Op_Dodaj, {6,15.75}},
@@ -84,7 +85,7 @@ bool BazaTestu::InicjalizujTest(const char * sNazwaTestu)
   }
 
   if (!strcmp(sNazwaTestu,"wlasny")) {
-    Translacja_pliku_na_tab(nazwa_zestawu);
+    Translacja_pliku_na_bazatestu(nazwa_zestawu);
     UstawTest(wskTabTestu,IloscPytan);
     return true;
   }
@@ -122,55 +123,61 @@ bool BazaTestu::PobierzNastpnePytanie(WyrazenieZesp *wskWyr)
   return true;
 }
 
+/*
+* Metoda wczytujaca pytania z pliku. Pytania i dane o tescie umieszczone sa w obiekcie typu BazaTestu.
+* Argumenty:
+*   nazwa_pliku - nazwa pliku- bazy pytan.
+* Zwraca:
+*   BazaTestu uzupelniona o dane wczytanego z pliku testu.
+*/
 
-BazaTestu  BazaTestu::Translacja_pliku_na_tab(string nazwa_pliku)
-{
+BazaTestu  BazaTestu::Translacja_pliku_na_bazatestu(string nazwa_pliku){
     ifstream PlikWe;
     BazaTestu TestzPliku;
-    WyrazenieZesp * TestWlasny = NULL,* Temp = NULL;
+    WyrazenieZesp * TestWlasny = NULL,* Temp = NULL, pobrane_wyr;
     unsigned int dlugosc=0;
-    PlikWe.open(nazwa_pliku);
+    PlikWe.open(nazwa_pliku); /* Otwarcie pliku o wskazanej w argumencie wywolania nazwie */
+    /* Jesli otwracie pliku o wskazanej nazwie nie uda sie, zglos blad */
     if(!PlikWe.is_open()){
       throw runtime_error("Inicjalizacja testu nie powiodla sie! Plik uszkodzony, badz nie istenieje\n");
     }
     cout << "WCZYTANO PLIK "<<endl;
-    WyrazenieZesp pobrane_wyr;
-    while(1)
+    while(1) /* Petla realizujaca wczytywanie kolejnych linii z pliku */
     {
-        char znak;
-        PlikWe >> znak;
-        if (znak=='.' || PlikWe.eof())
-            break;
-        PlikWe.putback(znak);
-        PlikWe >> pobrane_wyr; 
-        if(PlikWe.fail()){ 
-            PlikWe.clear(); 
-            PlikWe.ignore(10000,'\n'); 
-            continue;
-        }
-        if (dlugosc == 0 ){
-            TestWlasny = new WyrazenieZesp[1];
-            TestWlasny[dlugosc] = pobrane_wyr;
-            dlugosc++;
-        }
-        else{
-            Temp = new WyrazenieZesp[dlugosc];
-            for(unsigned int i=0; i<dlugosc;i++){
-                Temp[i] = TestWlasny[i];
-            }
-            delete [] TestWlasny;
-            TestWlasny = new WyrazenieZesp[dlugosc+1];
-            for(unsigned int i=0; i<dlugosc;i++){
-                TestWlasny[i] = Temp[i];
-            }
-            delete [] Temp;
-            TestWlasny[dlugosc] = pobrane_wyr;
-            dlugosc++;
-        }
+      char znak;
+      PlikWe >> znak;
+      if (znak=='.' || PlikWe.eof()) /* Jesli program napotka na "." lub koniec pliku konczy wczytywanie z pliku */
+          break;
+      PlikWe.putback(znak); /* Cofniecie sie o sprawdzany znak w strumieniu aby wczytac wyrazenie zespolone */
+      PlikWe >> pobrane_wyr; /* Wczytanie wyrazenia zespolonego */
+      if(PlikWe.fail()){  /* Warunek pomijajacy blednie zapisane wyrazenia zespolone */
+          PlikWe.clear(); 
+          PlikWe.ignore(10000,'\n'); 
+          continue;
+      }
+      /* Przypisywanie wczytanych pytan do tablic alokowanych dynamicznie */
+      if (dlugosc == 0 ){
+          TestWlasny = new WyrazenieZesp[1];
+          TestWlasny[dlugosc] = pobrane_wyr;
+          dlugosc++;
+      }
+      else{
+          Temp = new WyrazenieZesp[dlugosc];
+          for(unsigned int i=0; i<dlugosc;i++){
+              Temp[i] = TestWlasny[i];
+          }
+          delete [] TestWlasny;
+          TestWlasny = new WyrazenieZesp[dlugosc+1];
+          for(unsigned int i=0; i<dlugosc;i++){
+              TestWlasny[i] = Temp[i];
+          }
+          delete [] Temp;
+          TestWlasny[dlugosc] = pobrane_wyr;
+        dlugosc++;
+      }
     }
-  PlikWe.close();
-  
-  this->wskTabTestu=TestWlasny;
+  PlikWe.close(); /* Zakonczenie czytania pliku */
+  this->wskTabTestu=TestWlasny; /* Uzupelnienie BazyTestu o zebrane pytania i informacje o tescie */
   this->IloscPytan=dlugosc;
   this->IndeksPytania=0;
   return TestzPliku;

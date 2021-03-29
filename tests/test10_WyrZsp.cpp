@@ -2,8 +2,7 @@
 #include "./doctest/doctest.h"
 #include "LZespolona.hh"
 #include "WyrazenieZesp.hh"
-
-
+ 
 TEST_CASE("WyrZespolone - sprawdzenie dzialania sumy liczb zespolonych z calkowitymi wspolczynnikami Re i Im") {
     WyrazenieZesp x;
     LZespolona y;
@@ -28,7 +27,6 @@ TEST_CASE("WyrZespolone - sprawdzenie dzialania sumy liczb zespolonych z niecalk
     CHECK(x.Oblicz() == y);
 }
 
-
 TEST_CASE("WyrZespolone - sprawdzenie dzialania roznicy liczb zespolonych z calkowitymi wspolczynnikami Re i Im") {
     WyrazenieZesp x;
     LZespolona y;
@@ -38,7 +36,6 @@ TEST_CASE("WyrZespolone - sprawdzenie dzialania roznicy liczb zespolonych z calk
     
     y.re= 4; y.im= 4;
 
-    
     CHECK(x.Oblicz() == y);
 }
 
@@ -62,7 +59,6 @@ TEST_CASE("WyrZespolone - sprawdzenie dzialania ilocznu liczb zespolonych z calk
     x.Op = Op_Mnoz;
     
     y.re= -16; y.im= 22;
-
     
     CHECK(x.Oblicz() == y);
 }
@@ -87,7 +83,6 @@ TEST_CASE("WyrZespolone - sprawdzenie dzialania ilorazu dwoch liczb zespolonych 
     x.Op = Op_Dziel;
     
     y.re= 2.6; y.im= -0.8;
-
     
     CHECK(x.Oblicz() == y);
 }

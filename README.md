@@ -1,12 +1,18 @@
 # Projekt 2 - Arytmetyka liczb zespolonych
 
 ## Uruchamianie Programu
-- Program uruchamia sie samoczynnie w tyrbie "latwy" po uzyciu Makefile poleceniem "make".
+- Aby poprawnie skompilowac program nalezy uzyc Makefile poleceniem "make".
+- Program uruchamia sie samoczynnie w trybie "latwy" po uzyciu Makefile poleceniem "make run", uprzednio nalezy uzyc polcenia "make".
 - Alternatywnie program uruchomic mozna uzywajac ./test_arytm_zesp latwy/trudny.
 - Aby uruchomic test programu dla dowlnego zestawu pytan wczytanych z pliku nalezy skozystac z ./test_arytm_zesp wlansy "nazwa", 
 np. "./test_arytm_zesp wlansy Arytmetyka_plik.txt".
+
+## Uruchamianie Testów Programu
+Testy programu uruchamiaja się po wpisaniu w terminal "make test". Zaleca się wykonać najpierw wyczyszczenie wszystkich danych tymczasowych poleniem "make clean".
+
 ## Opis katalogu
 W katalogu znajduje sie plik Makefile oraz plik zawierajacy przykladowa zewnetrzna baze testu "Aretmetyka_plik.txt" zgodna z zestawem zaproponwoanym przez dr. Kreczmera.
+
 ## Cel ćwiczenia
 Wykształcenie umiejętności definiowania przeciążeń operatorów arytmetycznych dwuargumentowych i jednoargumentowych dla własnych struktur danych oraz operatora porównania. Przećwiczenie podstawowych operacji na strumieniach plikowych.  Nabycie umiejętności definiowania przeciążeń operacji na strumieniach.
 

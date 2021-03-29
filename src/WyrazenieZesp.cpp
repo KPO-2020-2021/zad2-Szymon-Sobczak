@@ -1,13 +1,11 @@
 #include "WyrazenieZesp.hh"
-/*
- * Tu nalezy zdefiniowac funkcje, ktorych zapowiedzi znajduja sie
- * w pliku naglowkowym.
- */
 
 /*
-* OPIS: Funkcja obliczajaca wynik operacji arytmetycznej pomiedzy dwoma liczbami zespolonymi.
-* PRE: Wrazenie zespolone zawierajace poprawie wprowadzone dwie liczby zespolone rozdzielone operatorem arytmetycznym. 
-* POST: Wynik dzialania arytmetycznego na wyrazeniu zespolonym, bedacy liczba zespolona.
+* Metoda obliczajaca wynik operacji arytmetycznej pomiedzy dwoma liczbami zespolonymi.
+* Argumenty:
+*   brak;
+* Zwraca:
+*   Wynik dzialania arytmetycznego na wyrazeniu zespolonym, bedacy liczba zespolona.
 */
 
 LZespolona WyrazenieZesp::Oblicz() const{     
@@ -30,15 +28,27 @@ LZespolona WyrazenieZesp::Oblicz() const{
 }
 
 /*
-* OPIS: Przeciazenie operatora do wyswietlania operatory arytmetyczne. 
-* PRE: Wrazenie zespolone do wyswietlania oraz strumien, na ktorym ma zostac wypisane wyrazenie.
-* POST: wyswietlenie wyrazenia zespolonego na wskazanym strumieniu.
+* Przeciazenie operatora << do wypisywania operatorow arytmetycznch na strumien typu ostream. 
+* Argumenty:
+*   WypSym- symbol operatora arytmetycznego do wyswietlenia.
+*   StrmWy - wybrany strumien typu ostream.
+* Zwraca:
+*   Wypisany znak operatora arytmetycznego na wskazany strumien. 
 */
 
 ostream & operator << (ostream & StrmWy, Operator & WypSym){
     const char ZnakOp[]="+-*/";
     return StrmWy << ZnakOp[WypSym];
 }
+
+/*
+* Przeciazenie operatora >> do wczytywania operatorow arytmetycznch ze strumienia typu istream. 
+* Argumenty:
+*   WczytSym- symbol operatora arytmetycznego.
+*   StrmWe - wybrany strumien typu istream.
+* Zwraca:
+*   Wczytany znak operatora arytmetycznego ze wskazanego strumienia. 
+*/
 
 istream & operator >> (istream & StrmWe, Operator & WczytSym){
     Operator TabTypOp[] = {Op_Dodaj, Op_Odejmij, Op_Mnoz, Op_Dziel}; 
@@ -54,6 +64,14 @@ istream & operator >> (istream & StrmWe, Operator & WczytSym){
     return StrmWe;
 }
 
+/*
+* Przeciazenie operatora >> do wczytywania operatorow arytmetycznch ze strumienia typu ifstream. 
+* Argumenty:
+*   WczytSym- symbol operatora arytmetycznego.
+*   StrmWe - wybrany strumien typu ifstream.
+* Zwraca:
+*   Wczytany znak operatora arytmetycznego ze wskazanego strumienia. 
+*/
 
 ifstream & operator >> (ifstream & StrmWe, Operator & WczytSym){
     Operator TabTypOp[] = {Op_Dodaj, Op_Odejmij, Op_Mnoz, Op_Dziel}; 
@@ -70,9 +88,12 @@ ifstream & operator >> (ifstream & StrmWe, Operator & WczytSym){
 }
 
 /*
-* OPIS: Przeciazenie operatora do wyswietlania wyrazania zespolonego. 
-* PRE: Wrazenie zespolone do wyswietlania oraz strumien, na ktorym ma zostac wypisane wyrazenie.
-* POST: wyswietlenie wyrazenia zespolonego na wskazanym strumieniu.
+* Przeciazenie operatora << do wypisywania wyrazen arytmetyczych na strumien typu ostream. 
+* Argumenty:
+*   WyrZ- wyrazenie zespolone do wypisania.
+*   StrmWy - wybrany strumien typu ostream.
+* Zwraca:
+*   Wypisane wyrazenie zespolone na wskazany strumien. 
 */
 
 ostream & operator << (ostream & StrmWy, WyrazenieZesp WyrZ){
@@ -80,9 +101,12 @@ ostream & operator << (ostream & StrmWy, WyrazenieZesp WyrZ){
 }
 
 /*
-* OPIS: Przeciazenie operatora >> do wczytywania wyrazenia zespolonego.
-* PRE: Dwie liczby zespolone rozdzielone operatorem arytmetycznym. 
-* POST: Odpowiednie przyporzdkowanie podnane wartosci do pol w strukturze wyrazenai zespolonego.
+* Przeciazenie operatora >> do wczytywania wyrazenia zespolonego ze strumienia typu istream. 
+* Argumenty:
+*   WyrZ- wyrazenie zespolone do wczytania.
+*   StrmWe - wybrany strumien typu istream.
+* Zwraca:
+*   Wyczytane wyrazenie zespolone ze wskazanego strumienia. 
 */
 
 istream & operator >> (istream & StrmWe, WyrazenieZesp & WyrZ){
@@ -90,6 +114,14 @@ istream & operator >> (istream & StrmWe, WyrazenieZesp & WyrZ){
     return StrmWe;
 }
 
+/*
+* Przeciazenie operatora >> do wczytywania wyrazenia zespolonego ze strumienia typu ifstream. 
+* Argumenty:
+*   WyrZ- wyrazenie zespolone do wczytania.
+*   StrmWe - wybrany strumien typu ifstream.
+* Zwraca:
+*   Wyczytane wyrazenie zespolone ze wskazanego strumienia. 
+*/
 
 ifstream & operator >> (ifstream & StrmWe, WyrazenieZesp & WyrZ){
     StrmWe >> WyrZ.Arg1 >> WyrZ.Op >> WyrZ.Arg2;

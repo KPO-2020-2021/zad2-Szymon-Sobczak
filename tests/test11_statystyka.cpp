@@ -8,7 +8,7 @@ TEST_CASE("Statystyka, inicjalizajca nowej statystyki") {
     BazaTestu y;
     y.IloscPytan = 5;
 
-    x.ustaw_statystyke(y);
+    x.ustaw_statystyke(y.IloscPytan);
 
     CHECK((x.ilosc_pytan == 5 && x.zdobyte_punkty == 0 && x.stracone_punkty == 0));
 }
@@ -18,7 +18,7 @@ TEST_CASE("Statystyka, dodawanie do licznika poprawnych odpowiedzi") {
     BazaTestu y;
     y.IloscPytan = 5;
 
-    x.ustaw_statystyke(y);
+    x.ustaw_statystyke(y.IloscPytan);
 
     CHECK((x.zdobyte_punkty == 0));
 
@@ -32,7 +32,7 @@ TEST_CASE("Statystyka, dodawanie do licznika blednych odpowiedzi") {
     BazaTestu y;
     y.IloscPytan = 5;
 
-    x.ustaw_statystyke(y);
+    x.ustaw_statystyke(y.IloscPytan);
 
     CHECK((x.stracone_punkty == 0));
 
@@ -67,7 +67,7 @@ TEST_CASE("Statystyka, sprawdzenie wyswietlania i obliczania procentu niewlasciw
     y.IloscPytan = 5;
     double z;
 
-    x.ustaw_statystyke(y);
+    x.ustaw_statystyke(y.IloscPytan);
     x.dodaj_punkt();
     x.dodaj_punkt();
     x.dodaj_niepoprawna_odp();
@@ -86,7 +86,7 @@ TEST_CASE("Statystyka, sprawdzenie wyswietlania wyniku statystyki testu") {
     BazaTestu y;
     y.IloscPytan = 5;
 
-    x.ustaw_statystyke(y);
+    x.ustaw_statystyke(y.IloscPytan);
     x.dodaj_punkt();
     x.dodaj_punkt();
     x.dodaj_niepoprawna_odp();
