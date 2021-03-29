@@ -121,7 +121,7 @@ ifstream & operator >> (ifstream & StrmWe, LZespolona & Ln){
 */
 
 ostream & operator << (ostream & StrmWy, LZespolona Lz){
-  StrmWy.precision(2);
+  StrmWy.precision(2); /* Ustawienie dokladnosci wyswietlania liczbyt zmiennoprzecinkowej do dwoch miejsc po przecinku */
   return StrmWy << '(' << fixed  << Lz.re << showpos << Lz.im << noshowpos << 'i' << ')';
 }
 
@@ -212,7 +212,7 @@ LZespolona  LZespolona::operator / (double skalar) const{
 * Warunki wstepne:
 *   - Skl2 nie moze byc 0+0i.
 * Zwraca:
-*   Iloraz liczb zespolonych.
+*   Iloraz dwoch liczb zespolonych.
 */
 
 LZespolona  LZespolona::operator / (LZespolona  Skl2) const{
