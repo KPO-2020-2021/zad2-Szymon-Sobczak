@@ -1,3 +1,4 @@
+/*Przygotowal: Szymon Sobczak, nr 259275*/
 #include <iostream>
 
 #include "BazaTestu.hh"
@@ -72,4 +73,4 @@ int main(int argc, char **argv){
   }
   cout << "Koniec testu" << endl << endl << podsumowaine; /* Wyswietlenie statystyki przeprowadzonego testu */
   return 0;
-}
+} 

@@ -25,4 +25,4 @@ istream & operator >> ( istream & StrmWe, WyrazenieZesp & WyrZ);
 ifstream & operator >> (ifstream & StrmWe, WyrazenieZesp & WyrZ);
 ifstream & operator >> (ifstream & StrmWe, Operator & WczytSym);
 
-#endif
+#endif 

@@ -96,4 +96,4 @@ TEST_CASE("Statystyka, sprawdzenie wyswietlania wyniku statystyki testu") {
     out << x;
     std::cout << out.str() << std::endl;
     CHECK("Ilosc dobrych odpowiedzi: 3.00\nIlosc blednych odpowiedzi: 2.00\nWynik procentowy poprawnych odpowiedzi: 60.00%\n" == out.str());
-}
+} 

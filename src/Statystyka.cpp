@@ -76,5 +76,5 @@ ostream & operator << (ostream & StrmWy, Wynik Wynik){
     StrmWy << "Ilosc dobrych odpowiedzi: " << fixed << Wynik.zdobyte_punkty <<endl;
     StrmWy << "Ilosc blednych odpowiedzi: " << fixed  << Wynik.stracone_punkty << endl;
     StrmWy << "Wynik procentowy poprawnych odpowiedzi: " << fixed  << Wynik.oblicz_proc_poprawne() << "%" <<endl;
-    return StrmWy;
+    return StrmWy; 
 }

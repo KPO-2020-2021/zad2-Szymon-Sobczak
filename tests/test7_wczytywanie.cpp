@@ -9,7 +9,7 @@ TEST_CASE("LZespolona - wczytywanie standard") {
     std::istringstream in("(3.75+1.10i)");
     in >> x;
     std::ostringstream out;
-    out << x; // lub strcmp? ew. == dla LZesp
+    out << x; 
     
     CHECK("(3.75+1.10i)" == out.str());
 }
@@ -62,7 +62,7 @@ TEST_CASE("WyrZsespolone - wczytywanie standard") {
     std::istringstream in("(3.75+1.1i)+(4+9i)");
     in >> x;
     std::ostringstream out;
-    out << x; // lub strcmp? ew. == dla LZesp
+    out << x; 
     
     CHECK("(3.75+1.10i) + (4.00+9.00i)" == out.str());
 }
@@ -92,4 +92,3 @@ TEST_CASE("WyrZsespolone test przeciazenia wczytania- wychwycenie bledu w zapisi
     
     CHECK(in.fail());
 }
- 

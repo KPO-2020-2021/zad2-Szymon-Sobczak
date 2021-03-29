@@ -25,6 +25,4 @@ struct BazaTestu {
   BazaTestu  Translacja_pliku_na_bazatestu(string nazwa_pliku);
 };
 
-
-
-#endif
+#endif 

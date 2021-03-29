@@ -4,7 +4,7 @@
 - Aby poprawnie skompilowac program nalezy uzyc Makefile poleceniem "make".
 - Program uruchamia sie samoczynnie w trybie "latwy" po uzyciu Makefile poleceniem "make run", uprzednio nalezy uzyc polcenia "make".
 - Alternatywnie program uruchomic mozna uzywajac ./test_arytm_zesp latwy/trudny.
-- Aby uruchomic test programu dla dowlnego zestawu pytan wczytanych z pliku nalezy skozystac z ./test_arytm_zesp wlansy "nazwa", 
+- Aby uruchomic test programu dla dowlnego zestawu pytan wczytanych z pliku nalezy skorzystac z ./test_arytm_zesp wlansy "nazwa", 
 np. "./test_arytm_zesp wlansy Arytmetyka_plik.txt".
 
 ## Uruchamianie Testów Programu
@@ -46,6 +46,3 @@ Repozytorium z zalążkiem do zadania ma następującą strukturę:
 
 ## Odnośniki do źródeł
 [Strona kursu z Programowania Obiektowego](https://kcir.pwr.edu.pl/~kreczmer/po/)
-
-
-

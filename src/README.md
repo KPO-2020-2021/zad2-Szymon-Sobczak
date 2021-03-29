@@ -1,2 +1,2 @@
 ## Pliki źródłowe
-Katalog zawiera pliki źródłowe programu.
+Katalog zawiera pliki źródłowe programu. 

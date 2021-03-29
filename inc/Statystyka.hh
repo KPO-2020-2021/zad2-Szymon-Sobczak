@@ -21,4 +21,4 @@ struct Wynik{
 
 ostream & operator << (ostream & StrmWy, Wynik Wynik);
 
-#endif
+#endif 

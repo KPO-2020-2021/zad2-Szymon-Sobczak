@@ -14,7 +14,7 @@ static WyrazenieZesp  TestLatwy[] =
   { {{2,1}, Op_Dodaj, {1,2}},
     {{1,0}, Op_Odejmij, {0,1}},
     {{3,0}, Op_Mnoz, {0,3}},
-    {{4,8}, Op_Dziel, {3,8}}, //1;0
+    {{4,8}, Op_Dziel, {1,0}}, 
   };
 
 /*
@@ -64,7 +64,7 @@ void BazaTestu::UstawTest(WyrazenieZesp *wskTabTestu, unsigned int IloscPytan)
  *      - Parametr wskBazaTestu nie moze byc pustym wskaznikiem. Musi zawierac adres
  *        zmiennej reprezentujacej baze testu, ktora wczesniej zostal poprawnie
  *        zainicjalizowany poprzez wywolanie funkcji InicjalizujTest.
- *      - Parametr sNazwaTestu musi wskazywac na jedna z nazw tzn. "latwe" lub "trudne".
+ *      - Parametr sNazwaTestu musi wskazywac na jedna z nazw tzn. "latwy", "trudny" lub "wlasny".
  *       
  * Zwraca:
  *       true - gdy operacja sie powiedzie i test zostanie poprawnie
@@ -181,4 +181,4 @@ BazaTestu  BazaTestu::Translacja_pliku_na_bazatestu(string nazwa_pliku){
   this->IloscPytan=dlugosc;
   this->IndeksPytania=0;
   return TestzPliku;
-}
+} 

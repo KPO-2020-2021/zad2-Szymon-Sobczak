@@ -106,5 +106,4 @@ TEST_CASE("WyrZespolone - sprawdzenie dzialania ilorazu liczby zespolonej i zera
     x.Op = Op_Dziel;
 
     WARN_THROWS(x.Oblicz());
-}
-
+} 

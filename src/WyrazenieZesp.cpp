@@ -88,7 +88,7 @@ ifstream & operator >> (ifstream & StrmWe, Operator & WczytSym){
 }
 
 /*
-* Przeciazenie operatora << do wypisywania wyrazen arytmetyczych na strumien typu ostream. 
+* Przeciazenie operatora << do wypisywania wyrazen zespolonych na strumien typu ostream. 
 * Argumenty:
 *   WyrZ- wyrazenie zespolone do wypisania.
 *   StrmWy - wybrany strumien typu ostream.

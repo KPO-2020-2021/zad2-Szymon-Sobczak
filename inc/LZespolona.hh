@@ -36,4 +36,4 @@ ostream & operator << (ostream & StrmWy, LZespolona Lz);
 
 ifstream & operator >> (ifstream & StrmWe, LZespolona & Ln);
 
-#endif
+#endif 

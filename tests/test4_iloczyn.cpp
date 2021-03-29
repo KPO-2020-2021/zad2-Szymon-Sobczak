@@ -105,4 +105,4 @@ TEST_CASE("LZespolona - iloczyn 7, mnozenie liczb zespolonych z waroscaimi przek
     z.im = 0.01;
     
     CHECK(x*y == z);
-}
+} 

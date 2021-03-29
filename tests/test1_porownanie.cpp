@@ -49,4 +49,4 @@ TEST_CASE("LZespolona - porownanie 4, rzad mniejsze niz zalozona minimalna rozni
     y.im = 1.999;
    
     CHECK(x == y);
-}
+} 

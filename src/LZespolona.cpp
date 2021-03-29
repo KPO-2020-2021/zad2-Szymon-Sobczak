@@ -26,11 +26,11 @@ double LZespolona::ModulZ(){
 }
 
 /*
-* Przeciazenie operatora >> do wczytywania liczby zespolonej do programu ze strumienia klasy istream.
+* Przeciazenie operatora >> do wczytywania liczby zespolonej do programu ze strumienia typu istream.
 * Argumenty:
-*   Lz- Liczba zespolona, do ktorej zostanie przypisana zwracana wartosc.
+*   Lz- Liczba zespolona, do ktorej zostanie przypisana wczytana liczba.
 *   StrmWy - wybrany strumien typu istream.
-* Zwraca:
+* Zwraca: 
 *   Wczytany obiekt- Liczba zespolona.
 */
 
@@ -69,7 +69,7 @@ istream & operator >> (istream & StrmWe, LZespolona & Ln){
 }
 
 /*
-* Przeciazenie operatora >> do wczytywania liczby zespolonej do programu ze strumienia klasy ifstream.
+* Przeciazenie operatora >> do wczytywania liczby zespolonej do programu ze strumienia typu ifstream.
 * Argumenty:
 *   Lz- Liczba zespolona, do ktorej zostanie przypisana zwracana wartosc.
 *   StrmWy - wybrany strumien typu ifstream.
@@ -114,10 +114,10 @@ ifstream & operator >> (ifstream & StrmWe, LZespolona & Ln){
 /*
 * Przeciazenie operatora <<, pozwalajace na wypisanie liczby zespolonej na strumien typu ostream.
 * Argumenty:
-*   Lz- Prawidlowo wprowadzona wartosc liczby zespolonej.
+*   Lz- liczba zespolona do wyswietlenia.
 *   StrmWy - wybrany strumien typu ostream.
 * Zwraca:
-*   Wypisana liczba zespolona w odpowiednim fromacie na wskaznae wyjscie.
+*   Wypisana liczba zespolona w odpowiednim fromacie na wskazane wyjscie.
 */
 
 ostream & operator << (ostream & StrmWy, LZespolona Lz){

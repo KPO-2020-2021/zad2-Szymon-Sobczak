@@ -24,4 +24,4 @@ TEST_CASE("LZespolona - test dla zerowej wartosci urojonej") {
     y.im = 0;
 
     CHECK(x.Sprzezenie() == y);
-}
+} 

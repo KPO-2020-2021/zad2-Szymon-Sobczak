@@ -52,5 +52,3 @@ TEST_CASE("WyrZespolone - wyswietlanie zaokraglane") {
     std::cout << out.str() << std::endl;
     CHECK( "(-5.13+7.99i) * (7.35-3.85i)" == out.str());
 }
-
-

@@ -66,4 +66,3 @@ TEST_CASE("LZespolona - dzielenie przez skalar - standardowe z przyblizeniem") {
     std::cout << ((x/t) == y) << std::endl;
     CHECK((x/t) == y);
 }
-
