@@ -10,6 +10,9 @@ np. "./test_arytm_zesp wlansy Arytmetyka_plik.txt".
 ## Uruchamianie Testów Programu
 Testy programu uruchamiaja się po wpisaniu w terminal "make test". Zaleca się wykonać najpierw wyczyszczenie wszystkich danych tymczasowych poleniem "make clean".
 
+## Modyfkacja
+Funkcje i przeciazenia operatorow ujete w "Modyfikacji" zostaly umieszczone w module "LZespolona.cpp".
+
 ## Opis katalogu
 W katalogu znajduje sie plik Makefile oraz plik zawierajacy przykladowa zewnetrzna baze testu "Aretmetyka_plik.txt" zgodna z zestawem zaproponwoanym przez dr. Kreczmera.
 

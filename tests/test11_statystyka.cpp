@@ -92,6 +92,7 @@ TEST_CASE("Statystyka, sprawdzenie wyswietlania wyniku statystyki testu") {
     x.dodaj_niepoprawna_odp();
     x.dodaj_punkt();
     x.dodaj_niepoprawna_odp();
+    
     std::ostringstream out;
     out << x;
     std::cout << out.str() << std::endl;

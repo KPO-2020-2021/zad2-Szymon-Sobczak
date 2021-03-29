@@ -8,7 +8,7 @@
 *   Sprzezona liczba zespolona.
 */
 
-LZespolona LZespolona::Sprzezenie() {
+LZespolona LZespolona::Sprzezenie(){
   this->im*=-1;
   return *this;
 }
@@ -224,3 +224,57 @@ LZespolona  LZespolona::operator / (LZespolona  Skl2) const{
   return Wynik;
 }
 
+/*
+* Funkcja wypisujaca na standardowe wyjscie wyznaczony Arg. glowny liczby zespolonej.
+* Argumenty:
+*   z - liczba zespolona z ktorej ma zostac wyznaczony i wypisany Arg. glowny.
+* Zwraca:
+*   brak;
+*/
+
+void arg(LZespolona z)
+{
+  double kat;
+  if (z.re==0){
+    if(z.im > 0)
+      kat = 0.5 * M_PI;
+    if(z.im < 0)
+      kat = -0.5 * M_PI;
+    if(z.im == 0)
+      throw runtime_error("Kat jest niezdefiniowany");
+  }
+  else{
+    if(z.re > 0)
+      kat = atan2(z.im, z.re);
+    if(z.re < 0)
+      kat = atan2(z.im, z.re) + M_PI;
+  }
+  cout.precision(2);
+  cout << fixed << kat;
+}
+
+/*
+* Przeciazenie operatora +=, pozwalajace na obliczenie sumy dwoch liczb zespolonych i przypisanie wyniku do 1 skladnika sumy.
+* Argumenty:
+*   Arg1- pierwszy skladnik dodawania.
+*   Arg2 - drugi skladnik dodawania.
+* Zwraca:
+*   Liczbe zespolona bedaca suma dwoch skladnikow.
+*/
+
+LZespolona  operator += (LZespolona  & Arg1,LZespolona const & Arg2){
+  return Arg1 = Arg1 + Arg2;
+}
+
+/*
+* Przeciazenie operatora /=, pozwalajace na obliczenie ilraozu liczb zespolonych i przypisanie wyniku do licznika.
+* Argumenty:
+*   Arg1- licznik.
+*   Arg2 - mianownik.
+* Zwraca:
+*   Liczbe zespolona bedaca ilorazem dwoch liczb zespolonych.
+*/
+
+LZespolona  operator /= (LZespolona  & Arg1,LZespolona const & Arg2){
+  return Arg1 = Arg1 / Arg2;
+}

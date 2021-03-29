@@ -1,5 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "./doctest/doctest.h"
+#include <string>
 #include "LZespolona.hh"
 #include "WyrazenieZesp.hh"
 
@@ -51,4 +52,13 @@ TEST_CASE("WyrZespolone - wyswietlanie zaokraglane") {
     out << x;
     std::cout << out.str() << std::endl;
     CHECK( "(-5.13+7.99i) * (7.35-3.85i)" == out.str());
+}
+
+TEST_CASE("Test funkcji arg() wyswietlajacej Arg. gl. dla liczby zespolonej o Re = 0 i Im = 0") {
+    LZespolona x;
+    
+    x.re = 0;
+    x.im = 0;
+
+    WARN_THROWS (arg(x));
 }

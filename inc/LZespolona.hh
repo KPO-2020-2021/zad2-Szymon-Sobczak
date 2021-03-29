@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
+#include <bits/stdc++.h>
 
 #define MIN_DIFF 0.01 /* Definicja minimalnej roznicy- dokladnosci wyniku */
 
@@ -30,6 +31,11 @@ struct  LZespolona {
   LZespolona  operator / (double skalar) const;
   LZespolona  operator / (LZespolona  Skl2) const;
 };
+
+void arg(LZespolona z);
+
+LZespolona  operator += (LZespolona  & Skl1,LZespolona const & Arg2);
+LZespolona  operator /= (LZespolona  & Skl1,LZespolona const & Arg2);
 
 istream & operator >> (istream & StrmWe, LZespolona & Ln);
 ostream & operator << (ostream & StrmWy, LZespolona Lz);

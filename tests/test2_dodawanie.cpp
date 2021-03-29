@@ -2,7 +2,7 @@
 #include "./doctest/doctest.h"
 #include "LZespolona.hh"
 
-TEST_CASE("LZespolona - suma 1, dodawanie liczb zespolonych calkowitych"){
+TEST_CASE("LZespolona - dodawanie, dodawanie liczb zespolonych calkowitych"){
     LZespolona x, y, z;
 
     x.re = 1;
@@ -17,7 +17,7 @@ TEST_CASE("LZespolona - suma 1, dodawanie liczb zespolonych calkowitych"){
     CHECK(x+y == z);
 }
 
-TEST_CASE("LZespolona - suma 2, dodawanie zera do liczb zespolonych calkowitych"){
+TEST_CASE("LZespolona - dodawanie, dodawanie zera do liczb zespolonych calkowitych"){
     LZespolona x, y, z;
 
     x.re = 1;
@@ -32,7 +32,7 @@ TEST_CASE("LZespolona - suma 2, dodawanie zera do liczb zespolonych calkowitych"
     CHECK(x+y == z);
 }
 
-TEST_CASE("LZespolona - suma 3, dodawanie liczb zespolonych z czescia dziesietna"){
+TEST_CASE("LZespolona - dodawanie, dodawanie liczb zespolonych z czescia dziesietna"){
     LZespolona x, y, z;
 
     x.re = 1.3;
@@ -47,7 +47,7 @@ TEST_CASE("LZespolona - suma 3, dodawanie liczb zespolonych z czescia dziesietna
     CHECK(x+y == z);
 }
 
-TEST_CASE("LZespolona - suma 4, dodawanie liczb zespolonych z czescia dziesietna i zera"){
+TEST_CASE("LZespolona - dodawanie, dodawanie liczb zespolonych z czescia dziesietna i zera"){
     LZespolona x, y, z;
 
     x.re = 1.1;
@@ -62,7 +62,7 @@ TEST_CASE("LZespolona - suma 4, dodawanie liczb zespolonych z czescia dziesietna
     CHECK(x+y == z);
 }
 
-TEST_CASE("LZespolona - suma 5, dodawanie liczb zespolonych ze zmiana na granicy"){
+TEST_CASE("LZespolona - dodawanie, dodawanie liczb zespolonych ze zmiana na granicy"){
     LZespolona x, y, z;
 
     x.re = 1.001;
@@ -77,7 +77,7 @@ TEST_CASE("LZespolona - suma 5, dodawanie liczb zespolonych ze zmiana na granicy
     CHECK(x+y == z);
 }
 
-TEST_CASE("LZespolona - suma 6, dodawanie liczb zespolonych z warosciami poza przedzialem dokladnosci"){
+TEST_CASE("LZespolona - dodawanie, dodawanie liczb zespolonych z warosciami poza przedzialem dokladnosci"){
     LZespolona x, y, z;
 
     x.re = 0.0009;
@@ -90,4 +90,72 @@ TEST_CASE("LZespolona - suma 6, dodawanie liczb zespolonych z warosciami poza pr
     z.im = 0.01;
     
     CHECK(x+y == z);
+}
+
+TEST_CASE("LZespolona - dodawanie, test przeciazenia += dla liczb zespolonych o wylczanie dodatnich re i im"){
+    LZespolona x, y, z;
+
+    x.re = 5;
+    x.im = 9;
+
+    y.re = 7;
+    y.im = 1;
+
+    z.re = 12.00;
+    z.im = 10.00;
+    
+    x+=y;
+
+    CHECK(x == z);
+}
+
+TEST_CASE("LZespolona - dodawanie, test przeciazenia += dla liczb zespolonych o dodatnich i ujemnych re i im"){
+    LZespolona x, y, z;
+
+    x.re = 5;
+    x.im = 9;
+
+    y.re = -7;
+    y.im = -1;
+
+    z.re = -2.00;
+    z.im = 8.00;
+    
+    x+=y;
+
+    CHECK(x == z);
+}
+
+TEST_CASE("LZespolona - dodawanie, test przeciazenia += dla liczb zespolonych bedacych zerami"){
+    LZespolona x, y, z;
+
+    x.re = 0;
+    x.im = 0;
+
+    y.re = 0;
+    y.im = 0;
+
+    z.re = 0;
+    z.im = 0;
+    
+    x+=y;
+
+    CHECK(x == z);
+}
+
+TEST_CASE("LZespolona - dodawanie, test przeciazenia += dla liczb zespolonych o re i im zmiennoprzecinkowch"){
+    LZespolona x, y, z;
+
+    x.re = 0.02;
+    x.im = 0.05;
+
+    y.re = -0.8;
+    y.im = 0;
+
+    z.re = -0.78;
+    z.im = 0.05;
+    
+    x+=y;
+
+    CHECK(x == z);
 }
