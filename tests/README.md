@@ -9,3 +9,4 @@ Wykonywane jest 11 serii testowych, sprawdających program w zakresie:
 
 ## Uwagi 
 - Wszystkie obliczane wartosci sa zaokraglane z tolerancja bledu MIN_DIFF wynoszaca 0.01. 
+- Testy oblczenia Argumentu glownego arg(), przeprowadzone zostaly w tescie "wyswietlanie". 
